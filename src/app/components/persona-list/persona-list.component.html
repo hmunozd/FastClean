@@ -1,0 +1,123 @@
+<div class="list row">
+    <ng-template #edit>
+        <form class="mb-4" [formGroup]="form" (ngSubmit)="editPersona();">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="tipoId">Tipo Identificacion</label>
+                    <select formControlName="tipoIdentificacion" id="tipoId" class="form-control">
+                        <ng-container *ngFor="let item of identificacion">
+                            <option [value]="item.nombre">{{item.nombre}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="Id">Identificacion</label>
+                    <input formControlName="identificacion" type="number" class="form-control" id="Id">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="pnombre">Primer Nombre</label>
+                    <input formControlName="primerNombre" type="text" class="form-control" id="pnombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="snombre">Segundo Nombre</label>
+                    <input formControlName="segundoNombre" type="text" class="form-control" id="snombre">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="papellido">Primer Apellido</label>
+                    <input formControlName="primerApellido" type="text" class="form-control" id="papellido">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sapellido">Segundo Apellido</label>
+                    <input formControlName="segundoApellido" type="text" class="form-control" id="sapellido">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Dirección</label>
+                <input formControlName="direccion" type="text" class="form-control" id="inputAddress"
+                    placeholder="Calle 123 #123">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cel">Celular</label>
+                    <input formControlName="celular" type="tel" class="form-control" id="cel">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tel">Telefono</label>
+                    <input formControlName="telefono" type="tel" class="form-control" id="tel">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ciudad">Ciudad</label>
+                    <select formControlName="ciudad" id="ciudad" class="form-control">
+                        <ng-container *ngFor="let item of ciudades">
+                            <option [value]="item.nombre">{{item.nombre}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cargo">Cargo</label>
+                    <select formControlName="cargo" id="cargo" class="form-control">
+                        <ng-container *ngFor="let item of cargos">
+                            <option [value]="item.nombre">{{item.nombre}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+                <button type="submit" class="btn btn-warning mr-3">Editar</button>
+                <button type="button" class="btn btn-danger" (click)="isEdit = !isEdit">Cancelar</button>
+            </div>
+        </form>
+    </ng-template>
+    <ng-container *ngIf="!isEdit; else edit">
+        <div class="col-md-6">
+            <h4>Lista de personas</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Identificacion</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Ciudad</th>
+                        <th scope="col">Tipo Identificacion</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let item of personas; let i = index">
+                        <tr>
+                            <td>{{ item.id_persona }}</td>
+                            <td>{{ item.identificacion }}</td>
+                            <td>{{ item.primer_nombre }} {{ item.segundo_nombre }}</td>
+                            <td>{{ item.primer_apellido }} {{ item.segundo_apellido }}</td>
+                            <td>{{ item.direccion }}</td>
+                            <td>{{ item.celular }}</td>
+                            <td>{{ item.telefono }}</td>
+                            <td>{{ item.ciudad }}</td>
+                            <td>{{ item.cargo }}</td>
+                            <td>{{ item.tipo_identificacion }}</td>
+                            <td>
+                                <div class="d-flex flex-row">
+                                    <button type="button" class="btn btn-danger mr-1"
+                                        (click)="deletePersona(item.id_persona)">Eliminar</button>
+                                    <button type="button" class="btn btn-warning"
+                                        (click)="editPersonas(item)">Editar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+</div>

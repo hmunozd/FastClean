@@ -1,0 +1,81 @@
+<div>
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <form [formGroup]="form" (ngSubmit)="savePersona();">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="tipoId">Tipo Identificacion</label>
+                        <select formControlName="tipoIdentificacion" id="tipoId" class="form-control">
+                            <ng-container *ngFor="let item of identificacion">
+                                <option [value]="item.nombre">{{item.nombre}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Id">Identificacion</label>
+                        <input formControlName="identificacion" type="number" class="form-control" id="Id">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="pnombre">Primer Nombre</label>
+                        <input formControlName="primerNombre" type="text" class="form-control" id="pnombre">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="snombre">Segundo Nombre</label>
+                        <input formControlName="segundoNombre" type="text" class="form-control" id="snombre">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="papellido">Primer Apellido</label>
+                        <input formControlName="primerApellido" type="text" class="form-control" id="papellido">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="sapellido">Segundo Apellido</label>
+                        <input formControlName="segundoApellido" type="text" class="form-control" id="sapellido">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Dirección</label>
+                    <input formControlName="direccion" type="text" class="form-control" id="inputAddress" placeholder="Calle 123 #123">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cel">Celular</label>
+                        <input formControlName="celular" type="tel" class="form-control" id="cel">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="tel">Telefono</label>
+                        <input formControlName="telefono" type="tel" class="form-control" id="tel">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ciudad">Ciudad</label>
+                        <select formControlName="ciudad" id="ciudad" class="form-control">
+                            <ng-container *ngFor="let item of ciudades">
+                                <option [value]="item.nombre">{{item.nombre}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cargo">Cargo</label>
+                        <select formControlName="cargo" id="cargo" class="form-control">
+                            <ng-container *ngFor="let item of cargos">
+                                <option [value]="item.nombre">{{item.nombre}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        </div>
+        <div *ngIf="submitted">
+            <div class="alert alert-success" role="alert">
+                <h4>La persona se inserto con éxito</h4>
+              </div>
+            <button class="btn btn-success" (click)="newTutorial()">Agregar otra persona</button>
+        </div>
+    </div>
+</div>
